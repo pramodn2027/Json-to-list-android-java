@@ -1,0 +1,278 @@
+package com.example.jasontoarray;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ArrayAdapter;
+
+import android.widget.ListView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+    String json_string = "{\n" +
+                         "closed loop control system, passes through( ,) - 1 0j point in the GH plane. The gain margin of the system in dB is equal to",
+			"options": [" infinite ", " greater than zero", "less than zero", "zero"],
+			"correct_answer": "zero",
+			"correct_option_number": 4
+		},
+		{
+			"question_number": 56,
+			"question": "The positive values of K and a so that the system shown in the figures below oscillates at a frequency of 2 rad/sec respectively are",
+			"options": [" 1, 0.75 ", "2, 0.75", " 1, 1 ", " 2, 2"],
+			"correct_answer": "2, 0.75",
+			"correct_option_number": 2
+		},
+		{
+			"question_number": 57,
+			"question": "The unit impulse response of a system is ft e t () , 0 = -t $ . For this system the steady-state value of the output for unit step input is equal to",
+			"options": ["-1", "0", "1", "∞"],
+			"correct_answer": "1",
+			"correct_option_number": 3
+		},
+		{
+			"question_number": 58,
+			"question": "The transfer function of a phase lead compensator is given by G s( ) Ts Ts 1 1 3 c=++where T> 0 The maximum phase shift provide by such a compensator is",
+			"options": ["π/2", "π/3", "π/4", "π/6"],
+			"correct_answer": "π/6",
+			"correct_option_number": 4
+		},
+		{
+			"question_number": 59,
+			"question": "The minimum step-size required for a Delta-Modulator operating at 32k samples/sec to track the signal (here u t( ) is the unit-step function) x t( ) = + 125[ ( ) ( 1) (250 )[ ( 1) ( 2)] ut ut t ut ut - - -- - so that slope-overload is avoided, would be",
+			"options": ["2^-10", "2^-8", "2^-6", "2^-4"],
+			"correct_answer": "2^-8",
+			"correct_option_number": 2
+		},
+		{
+			"question_number": 60,
+			"question": "A zero-mean white Gaussian noise is passes through an ideal lowpass filter of bandwidth 10 kHz. The output is then uniformly sampled with sampling period ts = 0 03 . msec. The samples so obtained would be",
+			"options": ["correlated ", "statistically independent", "uncorrelated ", "orthogonal"],
+			"correct_answer": "correlated",
+			"correct_option_number": 1
+		},
+		{
+			"question_number": 61,
+			"question": "A zero-mean white Gaussian noise is passes through an ideal lowpass filter of bandwidth 10 kHz. The output is then uniformly sampled with sampling period ts = 0 03 . msec. The samples so obtained would be",
+			"options": ["correlated ", "statistically independent", "uncorrelated ", "orthogonal"],
+			"correct_answer": "correlated",
+			"correct_option_number": 1
+		},
+		{
+			"question_number": 62,
+			"question": "A source generates three symbols with probabilities 0.25, 0.25, 0.50 at a rate of 3000 symbols per second. Assuming independent generation of symbols, the  ",
+			"options": ["6000 bits/sec", "4500 bits/sec", "3000 bits/se", "1500 bits/sec"],
+			"correct_answer": "4500 bits/sec",
+			"correct_option_number": 2
+		},
+		{
+			"question_number": 63,
+			"question": "The diagonal clipping in Amplitude Demodulation (using envelop detector) can be avoided it RC time-constant of the envelope detector satisfies the following condition, (here W is message bandwidth and w is carrier frequency both in  ",
+			"options": ["RC<1/W", "RC>1/W", "RC<1/w", "RC>1/w"],
+			"correct_answer": "RC<1/W",
+			"correct_option_number": 1
+		},
+		{
+			"question_number": 64,
+			"question": "In the following figure the minimum value of the constant  C , which is to be added to y t 1( ) such that y t 1( ) and y t 2( ) are different , is",
+			"options": ["Δ", "Δ/2", "Δ^2/12", "Δ/L"],
+			"correct_answer": "Δ/2",
+			"correct_option_number": 2
+		},
+		{
+			"question_number": 65,
+			"question": "A message signal with bandwidth 10 kHz is Lower-Side Band SSB modulated with carrier frequency fc 1 10 6 = Hz. The resulting signal is then passed through a Narrow-Band Frequency Modulator with carrier frequency fc 2 10 9 = Hz. The bandwidth of the output would be",
+			"options": ["4*10^4 Hz", "4*10^6 Hz", "4*10^9 Hz", "4*10^10 Hz"],
+			"correct_answer": "4*10^9 Hz",
+			"correct_option_number": 3
+		},
+		{
+			"question_number": 66,
+			"question": "A medium of relative permittivity e r 2=2 forms an interface with free - space. A point source of electromagnetic energy is located in the medium at a depth of 1 meter from the interface. Due to the total internal reflection, the transmitted beam has a circular cross-section over the interface. The area of the beam crosssection at the interface is given by",
+			"options": ["2Πm^2", "Π^2 m^2", "Π/2 m^2", "Πm^2"],
+			"correct_answer": "Πm^2",
+			"correct_option_number": 4
+		},
+		{
+			"question_number": 68,
+			"question": "When a planes wave traveling in free-space is incident normally on a medium having the fraction of power transmitted into the medium is given by",
+			"options": ["8/9", "1/2", "1/3", "5/6"],
+			"correct_answer": "8/9",
+			"correct_option_number": 1
+		},
+		{
+			"question_number": 67,
+			"question": "A medium is divide into regions I and II about x=0 plane, as shown in the figure below. An electromagnetic wave with electric field Eaaa 1 =++ 435 xyz ttt is incident normally on the interface from region I . The electric file E 2 in region II at the interface is",
+			"options": ["E E 2 1", ".75 1.25 aaa ttt", "335 aaa ttt xyz +", "++ 335 aaa xyz"],
+			"correct_answer": "335 aaa ttt xyz +",
+			"correct_option_number": 3
+		},
+		{
+			"question_number": 69,
+			"question": "A rectangular wave guide having TE10 mode as dominant mode is having a cut off frequency 18 GHz for the mode TE30. The inner broad - wall dimension of the rectangular wave guide is",
+			"options": ["5/3 cm", "5 cm", "5/2 cm", "10 cm"],
+			"correct_answer": "5/2 cm",
+			"correct_option_number": 3
+		},
+		{
+			"question_number": 70,
+			"question": "A mast antenna consisting of a 50 meter long vertical conductor operates over a perfectly conducting ground plane. It is base-fed at a frequency of 600 kHz. The radiation resistance of the antenna is Ohms is",
+			"options": ["2Π^2 /5", "Π^2 /5", "4Π^2 /5", "20Π^2"],
+			"correct_answer": "4Π^2 /5",
+			"correct_option_number": 3
+		},
+		{
+			"question_number": 71,
+			"question": "Under the DC conditions, the collector-or-emitter voltage drop is",
+			"options": [" 4.8 Volts", "5.3 Volts", "6.0 Volts", " 6.6 Volts"],
+			"correct_answer": "6.0 Volts",
+			"correct_option_number": 3
+		},
+		{
+			"question_number": 72,
+			"question": "If bDC is increased by 10%, the collector-to-emitter voltage drop",
+			"options": ["increases by less than or equal to 10%", "decreases by less than or equal to 10%", " increase by more than 10%", "decreases by more than 10%"],
+			"correct_answer": "decreases by less than or equal to 10%",
+			"correct_option_number": 2
+		},
+		{
+			"question_number": 73,
+			"question": "The small-signal gain of the amplifier Vc/Vs is",
+			"options": ["-10", "-5.3", "5.3 ", " 10 "],
+			"correct_answer": "-10",
+			"correct_option_number": 1
+		},
+		{
+			"question_number": 75,
+			"question": "An Amplitude Modulated signal is given as x t AM ( ) = + 100 0 5 [ ( ) . ( )]cos pt gt t wc in the interval 0 1 # #t . One set of possible values of modulating signal and modulation index would be",
+			"options": ["t,0.5", "t,1.0", "t,2.0", "t^2,0.5"],
+			"correct_answer": "t,0.5",
+			"correct_option_number": 1
+		},
+		{
+			"question_number": 74,
+			"question": "The impulse response of filter matched to the signal st gt gt ( ) ( ) ( )* ( ) = -- d 1 2 is given as :",
+			"options": ["s(1-t)", "-s(1-t)", "-s(t)", "s(t)"],
+			"correct_answer": "cs(1-t)",
+			"correct_option_number": 1
+		},
+		{
+			"question_number": 76,
+			"question": "The power dissipation across the transistor Q1 shown in the figure is",
+			"options": ["4.8 Watts ", "5 Watts ", "5.4 Watts ", "6.0 Watts "],
+			"correct_answer": "5.4 Watts",
+			"correct_option_number": 3
+		},
+		{
+			"question_number": 77,
+			"question": "If the unregulated voltage increases by 20%, the power dissipation across the transistor Q1",
+			"options": [" increases by 20%", "increases by 50%", "remains unchanged", "decreases by 20%"],
+			"correct_answer": "increases by 50%",
+			"correct_option_number": 2
+		},
+		{
+			"question_number": 78,
+			"question": "It is desired to generate a stochastic process (as voltage process) with power spectral density S(w) 16/(16 )2 +w =w by driving a Linear-Time-Invariant system by zero mean white noise (As voltage process) with power spectral density being constant equal to 1. The system which can perform the desired task could be",
+			"options": ["first order lowpass R-L filter", "first order highpass R-C filte", "tuned L-C filter", "series R-L-C filter"],
+			"correct_answer": "first order lowpass R-L filter",
+			"correct_option_number": 1
+		},
+		{
+			"question_number": 79,
+			"question": "The parameters of the system obtained in previous Q would be",
+			"options": ["first order R-L lowpass filter would have R= 4Ω, L= 1H", "first order R-C highpass filter would have R=4Ω C=0.25F", "tuned L-C filter would have L=4H C=4F", "Series R-L-C lowpass filter would have R=1Ω, L=4H, C=4F"],
+			"correct_answer": "tuned L-C filter would have L=4H C=4F",
+			"correct_option_number": 3
+		},
+		{
+			"question_number": 80,
+			"question": "The average side-band power for the AM signal given above is",
+			"options": [" 25", " 12.5 ", "6.25", "3.125"],
+			"correct_answer": "6.25",
+			"correct_option_number": 3
+		},
+		{
+			"question_number": 81,
+			"question": "The AM signal gets added to a noise with Power Spectral Density S f(n) given in the figure below. The ratio of average sideband power to mean noise power would be :",
+			"options": ["25 / 8NoB", "25 / 4NoB", "25 / 2NoB", "25 / NoB"],
+			"correct_answer": "25 / 4 NoB ",
+			"correct_option_number": 2
+		},
+		{
+			"question_number": 82,
+			"question": "The value of a so that the system has a phase - margin equal to 4p is approximately equal to",
+			"options": ["2.40", "1.40", "0.84", " 0.74"],
+			"correct_answer": "0.84",
+			"correct_option_number": 3
+		},
+		{
+			"question_number": 83,
+			"question": "With the value of a set for a phase - margin of 4p , the value of unit - impulse response of the open - loop system at t = 1 second is equal to",
+			"options": ["3.40 ", "2.40", "1.84", " 1.74"],
+			"correct_answer": "1.84",
+			"correct_option_number": 3
+		},
+		{
+			"question_number": 84,
+			"question": "A 30 Volts battery with zero source resistance is connected to a coaxial line of characteristic impedance of 50 Ohms at t = 0 second and terminated in an unknown resistive load. The line length is such that it takes 400 sm for an electromagnetic wave to travel from source end to load end and vice-versa. At t = 400 sm , the voltage at the load end is found to be 40 Volts",
+			"options": [" 25 Ohms ", "50 Ohms", "75 Ohms ", "100 Ohms"],
+			"correct_answer": "100 Ohms",
+			"correct_option_number": 4
+		},
+		{
+			"question_number": 85,
+			"question": "The steady-state current through the load resistance is",
+			"options": [" 1.2 Amps", "0.3 Amps", "0.6 Amps", " 0.4 Amps"],
+			"correct_answer": "0.3 Amps",
+			"correct_option_number": 2
+		}
+
+	]
+}
+
+            "}";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        try {
+
+            ListView listView = (ListView) findViewById(R.id.list_view);
+
+            List<String> items = new ArrayList<>();
+            JSONObject root = new JSONObject(json_string);
+
+            JSONArray array= root.getJSONArray("array");
+
+            this.setTitle(root.getString("title"));
+
+            for(int i=0;i<array.length();i++)
+            {
+                JSONObject object= array.getJSONObject(i);
+                items.add(object.getString("company"));
+            }
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_list_item_1, items);
+
+            if (listView != null) {
+                listView.setAdapter(adapter);
+            }
+
+            JSONObject nested= root.getJSONObject("nested");
+            Log.d("TAG","flag value "+nested.getBoolean("flag"));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+    }
